@@ -1,8 +1,9 @@
 package com.sergio.deliverydrone.model;
 
+import java.io.Serializable;
 import java.nio.file.Path;
 
-public class FileDrone {
+public class FileDrone implements Serializable {
 
     private String droneName;
     private Path inputFile;
