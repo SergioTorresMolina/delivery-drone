@@ -14,4 +14,7 @@ public class DeliveryDroneException extends RuntimeException {
         this.type = type;
     }
 
+    public DeliveryDroneExceptionType getType() {
+        return type;
+    }
 }

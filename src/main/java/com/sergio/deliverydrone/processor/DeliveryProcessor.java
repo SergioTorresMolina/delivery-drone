@@ -28,7 +28,13 @@ public class DeliveryProcessor {
     }
 
     public void processFile(FileDrone fileDrone) {
-        List<Delivery> fileDeliveries = DroneFileReader.readFile(fileDrone.getInputFile());
+        List<Delivery> fileDeliveries;
+        try {
+             fileDeliveries = DroneFileReader.readFile(fileDrone.getInputFile());
+        }catch(DeliveryDroneException dde) {
+            System.out.println(String.format("Error: %s, %s", dde.getType().name(), dde.getMessage()));
+            return;
+        }
         DroneController droneController = new DroneController(droneFactory.getDrone(fileDrone.getDroneName()));
         String result;
         if(!validateDeliveriesLength(fileDeliveries)) {

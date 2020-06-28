@@ -28,7 +28,8 @@ public class DroneFileWriter {
         try {
             String location = outputPath.toString().concat(File.separator).concat(String.format(OUTPUT_FORMAT, droneName));
             Path outputPath = Paths.get(location);
-            Files.write(outputPath, result.getBytes(), StandardOpenOption.CREATE);
+            Files.deleteIfExists(outputPath);
+            Files.write(outputPath, result.getBytes(), StandardOpenOption.CREATE_NEW);
         } catch (IOException e) {
             e.printStackTrace();
         }
