@@ -2,11 +2,14 @@ package com.sergio.deliverydrone.model;
 
 import com.sergio.deliverydrone.exception.DeliveryDroneException;
 import com.sergio.deliverydrone.exception.DeliveryDroneExceptionType;
+import com.sergio.deliverydrone.file.PropertyLoader;
 import com.sergio.deliverydrone.processor.TurnController;
 
 import java.io.Serializable;
 
 public class DroneGps implements Serializable, Addressable {
+
+    private static Integer MAX_BLOCKS;
 
     private Integer maxYValue;
     private Integer minYValue;
@@ -17,13 +20,14 @@ public class DroneGps implements Serializable, Addressable {
     private Direction direction;
 
     public DroneGps() {
+        MAX_BLOCKS = Integer.valueOf(PropertyLoader.getPropertyValue("blocks"));
         x = 0;
         y = 0;
         direction = Direction.NORTH;
         minYValue = 0;
-        maxYValue = 10;
+        maxYValue = MAX_BLOCKS;
         minXValue = 0;
-        maxXValue = 10;
+        maxXValue = MAX_BLOCKS;
     }
 
     public int getX() {

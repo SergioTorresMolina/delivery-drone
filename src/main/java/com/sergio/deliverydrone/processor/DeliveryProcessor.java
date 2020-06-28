@@ -1,6 +1,7 @@
 package com.sergio.deliverydrone.processor;
 
 import com.sergio.deliverydrone.exception.DeliveryDroneException;
+import com.sergio.deliverydrone.file.DeliveryDroneLogger;
 import com.sergio.deliverydrone.file.DroneFileReader;
 import com.sergio.deliverydrone.file.DroneFileWriter;
 import com.sergio.deliverydrone.model.Delivery;
@@ -32,7 +33,7 @@ public class DeliveryProcessor {
         try {
              fileDeliveries = DroneFileReader.readFile(fileDrone.getInputFile());
         }catch(DeliveryDroneException dde) {
-            System.out.println(String.format("Error: %s, %s", dde.getType().name(), dde.getMessage()));
+            DeliveryDroneLogger.printLog(String.format("Error: %s, %s", dde.getType().name(), dde.getMessage()));
             return;
         }
         DroneController droneController = new DroneController(droneFactory.getDrone(fileDrone.getDroneName()));
@@ -45,7 +46,7 @@ public class DeliveryProcessor {
                     .collect(Collectors.joining("\n"));
         }
         DroneFileWriter.writeResult(fileDrone.getDroneName(), result);
-        System.out.println(fileDrone.getDroneName() + ":\n" + result);
+        DeliveryDroneLogger.printLog("Drone ".concat(fileDrone.getDroneName()).concat(":\n").concat(result).concat("\n"));
     }
 
     private boolean validateDeliveriesLength(List<Delivery> deliveries) {

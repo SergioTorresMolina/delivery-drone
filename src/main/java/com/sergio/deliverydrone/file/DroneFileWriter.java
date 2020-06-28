@@ -10,18 +10,12 @@ import java.nio.file.StandardOpenOption;
 
 public class DroneFileWriter {
 
-    private static final String OUTPUT_DRONE_PATH = "output";
-
     private static final String OUTPUT_FORMAT = "out%s.txt";
 
     private static Path outputPath;
 
     static {
-        try {
-            outputPath = Paths.get(ClassLoader.getSystemResource(OUTPUT_DRONE_PATH).toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+            outputPath = Paths.get(PropertyLoader.getPropertyValue("output_folder"));
     }
 
     public static void writeResult(String droneName, String result) {
