@@ -20,18 +20,12 @@ import java.util.stream.Collectors;
 
 public class DroneFileReader {
 
-    private static final String INPUT_DRONE_PATH = "input";
-
     private static final Pattern FILE_PATTERN = Pattern.compile("in\\d[0-9].txt");
 
     private static Path inputPath;
 
     static {
-        try {
-            inputPath = Paths.get(ClassLoader.getSystemResource(INPUT_DRONE_PATH).toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        inputPath = Paths.get(PropertyLoader.getPropertyValue("input_folder"));
     }
 
     public static List<FileDrone> readFiles() {
