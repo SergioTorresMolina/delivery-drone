@@ -1,6 +1,7 @@
 package com.sergio.deliverydrone;
 
 import com.sergio.deliverydrone.exception.DeliveryDroneException;
+import com.sergio.deliverydrone.file.DeliveryDroneLogger;
 import com.sergio.deliverydrone.file.DroneFileReader;
 import com.sergio.deliverydrone.processor.DeliveryProcessor;
 
@@ -15,7 +16,7 @@ public class DeliveryDroneApplication {
                         processor.processFile(fileDrone);
                     });
         } catch(DeliveryDroneException dde) {
-            //TODO log error
+            DeliveryDroneLogger.printLog(dde);
         }
     }
 
