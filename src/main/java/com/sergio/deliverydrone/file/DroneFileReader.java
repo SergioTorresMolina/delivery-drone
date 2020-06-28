@@ -24,8 +24,11 @@ public class DroneFileReader {
 
     private static Path inputPath;
 
+    private static final Integer MAX_DRONE_NUMBER;
+
     static {
         inputPath = Paths.get(PropertyLoader.getPropertyValue("input_folder"));
+        MAX_DRONE_NUMBER = Integer.valueOf(PropertyLoader.getPropertyValue("max_drone_number"));
     }
 
     public static List<FileDrone> readFiles() {
@@ -41,9 +44,13 @@ public class DroneFileReader {
     }
 
     private static FileDrone buildFileDrone(Path fileInput) {
-        return FileDroneBuilder.builder(fileInput)
+        FileDrone fileDrone = FileDroneBuilder.builder(fileInput)
                 .withDroneName(FileUtil.extractDroneName(fileInput))
                 .build();
+        if(Integer.valueOf(fileDrone.getDroneName()) > MAX_DRONE_NUMBER) {
+            throw new DeliveryDroneException(DeliveryDroneExceptionType.INVALID_DRONE, "Drone name invalid, max allowed " + MAX_DRONE_NUMBER);
+        }
+        return fileDrone;
     }
 
     public static List<Delivery> readFile(Path inputFileDelivery) {
