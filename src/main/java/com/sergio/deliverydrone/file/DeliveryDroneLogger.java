@@ -27,6 +27,7 @@ public class DeliveryDroneLogger {
 
     public static void printLog(DeliveryDroneException exception){
         String exceptionLine = String.format("ERROR: %s, %s", exception.getType().name(), exception.getMessage());
+        printLog(exceptionLine);
     }
 
     public static void printLog(String message) {
