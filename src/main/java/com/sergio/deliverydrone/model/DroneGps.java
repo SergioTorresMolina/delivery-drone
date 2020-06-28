@@ -2,6 +2,7 @@ package com.sergio.deliverydrone.model;
 
 import com.sergio.deliverydrone.exception.DeliveryDroneException;
 import com.sergio.deliverydrone.exception.DeliveryDroneExceptionType;
+import com.sergio.deliverydrone.processor.TurnController;
 
 import java.io.Serializable;
 
@@ -35,10 +36,6 @@ public class DroneGps implements Serializable, Addressable {
 
     public Direction getDirection() {
         return direction;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
     }
 
     public void turnRight() {

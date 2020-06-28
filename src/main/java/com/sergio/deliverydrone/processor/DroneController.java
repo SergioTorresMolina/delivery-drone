@@ -3,7 +3,6 @@ package com.sergio.deliverydrone.processor;
 import com.sergio.deliverydrone.model.Delivery;
 import com.sergio.deliverydrone.model.Drone;
 import com.sergio.deliverydrone.model.DroneGps;
-import com.sergio.deliverydrone.model.Instruction;
 
 public class DroneController {
 

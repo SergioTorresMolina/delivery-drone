@@ -1,4 +1,7 @@
-package com.sergio.deliverydrone.model;
+package com.sergio.deliverydrone.processor;
+
+import com.sergio.deliverydrone.model.Direction;
+import com.sergio.deliverydrone.model.DirectionAssociation;
 
 import java.util.HashMap;
 import java.util.Map;
